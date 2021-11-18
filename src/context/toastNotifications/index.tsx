@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useCallback, useMemo, useReducer } from "react";
 import { v4 as uuid } from "uuid";
 import { ToastNotificationsList } from "../../components/ToastNotificationsList";
 import type { ToastNotification } from "../../types/toastNotification";
@@ -36,25 +36,32 @@ export const ToastNotificationsProvider = ({
     initialToastNotifications
   );
 
-  const createToastNotification = (
-    toastNotification: Omit<ToastNotification, "id">
-  ) => {
-    const id = uuid();
+  const createToastNotification = useCallback(
+    (toastNotification: Omit<ToastNotification, "id">) => {
+      const id = uuid();
 
-    dispatchToastNotifications({
-      type: "create",
-      toastNotification: { ...toastNotification, id },
-    });
-  };
+      dispatchToastNotifications({
+        type: "create",
+        toastNotification: { ...toastNotification, id },
+      });
+    },
+    []
+  );
 
-  const deleteToastNotification = ({ id }: { id: ToastNotification["id"] }) => {
-    dispatchToastNotifications({ type: "delete", id });
-  };
+  const deleteToastNotification = useCallback(
+    ({ id }: { id: ToastNotification["id"] }) => {
+      dispatchToastNotifications({ type: "delete", id });
+    },
+    []
+  );
 
-  const value = {
-    createToastNotification,
-    deleteToastNotification,
-  };
+  const value = useMemo(
+    () => ({
+      createToastNotification,
+      deleteToastNotification,
+    }),
+    [createToastNotification, deleteToastNotification]
+  );
 
   return (
     <ToastNotificationsContext.Provider value={value}>
