@@ -64,10 +64,14 @@ None (yet).
 - `toast` - A function used to create toast notifications.
 
 ```ts
-(
-toastNotification: { text: string; type: "success" | "information" | "warning" | "error" }
-) => void;
-
+(toastNotification: {
+  text: string;
+  type: "success" | "information" | "warning" | "error";
+}) => {
+  id: string;
+  text: string;
+  type: "success" | "information" | "warning" | "error";
+};
 ```
 
 #### Examples
