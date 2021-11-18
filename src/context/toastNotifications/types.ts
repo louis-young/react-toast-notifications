@@ -11,6 +11,7 @@ export type ToastNotificationsContextValue = {
   }: {
     text: ToastNotification["text"];
   }) => void;
+  deleteToastNotification: ({ id }: { id: ToastNotification["id"] }) => void;
 };
 
 export interface ToastNotificationsProviderProps {
