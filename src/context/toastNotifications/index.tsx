@@ -61,12 +61,14 @@ export const ToastNotificationsProvider = ({
 
   const value = {
     createToastNotification,
-    deleteToastNotification,
   };
 
   return (
     <ToastNotificationsContext.Provider value={value}>
-      <ToastNotificationsList toastNotifications={toastNotifications} />
+      <ToastNotificationsList
+        toastNotifications={toastNotifications}
+        deleteToastNotification={deleteToastNotification}
+      />
 
       {children}
     </ToastNotificationsContext.Provider>

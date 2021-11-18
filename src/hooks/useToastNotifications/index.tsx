@@ -10,7 +10,7 @@ export const useToastNotifications = () => {
     );
   }
 
-  const { createToastNotification, deleteToastNotification } = context;
+  const { createToastNotification: toast } = context;
 
-  return { createToastNotification, deleteToastNotification };
+  return { toast };
 };

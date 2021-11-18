@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useToastNotifications } from "./hooks/useToastNotifications";
 
 export const Application = () => {
-  const { createToastNotification } = useToastNotifications();
+  const { toast } = useToastNotifications();
 
   const [
     createToastNotificationButtonClickCount,
@@ -10,7 +10,7 @@ export const Application = () => {
   ] = useState(1);
 
   const handleCreateToastNotificationButtonClick = () => {
-    createToastNotification({
+    toast({
       text: `My favourite number is ${createToastNotificationButtonClickCount}.`,
     });
 
