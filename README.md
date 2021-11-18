@@ -120,12 +120,41 @@ import { useToastNotifications } from "@louis-young/react-toast-notifications";
 
 // ...
 
-const { toast } = useToastNotifications();
+const { createToastNotification, updateToastNotification, deleteToastNotification } = useToastNotifications();
 
 // ...
 
-toast({
+/**
+ * The create and update functions return the whole toast
+ * notification so you can easily programmatically
+ * update a notification's text or type.
+ */
+
+const { id, text, type } = createToastNotification({
   text: "Lorem ipsum dolor ipsum dolor ipsum dolor",
   type: "success",
 });
+
+/**
+ * Update the toast notification's text.
+ */
+
+updateToastNotification({ id, { text: "Updated toast notification", type }});
+
+/**
+ * The update function also returns the whole toast
+ * notification although it will typically already
+ * be in scope from creation.
+
+/**
+ * Update the toast notification's type.
+ */
+
+updateToastNotification({ id, { text, type: "information" }});
+
+/**
+ * Delete the toast notification.
+ */
+
+deleteToastNotification({ id })
 ```
