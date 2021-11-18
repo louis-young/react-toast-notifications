@@ -13,7 +13,7 @@ export const ToastNotification = ({
   useEffect(() => {
     const timeout = setTimeout(() => {
       deleteToastNotification({ id });
-    }, 4 * 1000); // Four seconds.
+    }, 400 * 1000); // Four seconds.
 
     return () => {
       clearTimeout(timeout);
