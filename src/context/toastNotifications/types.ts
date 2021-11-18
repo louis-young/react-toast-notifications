@@ -1,16 +1,5 @@
 import type { ReactNode } from "react";
-
-export type ToastNotificationType =
-  | "success"
-  | "information"
-  | "warning"
-  | "error";
-
-export interface ToastNotification {
-  id: string;
-  text: string;
-  type: ToastNotificationType;
-}
+import type { ToastNotification } from "../../types/toastNotification";
 
 export type ToastNotificationsContextValue = {
   createToastNotification: (

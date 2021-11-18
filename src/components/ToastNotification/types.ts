@@ -1,10 +1,7 @@
-import {
-  ToastNotification,
-  ToastNotificationType,
-} from "../../context/toastNotifications/types";
+import type { ToastNotification } from "../../types/toastNotification";
 
 export interface ToastNotificationProps {
   text: ToastNotification["text"];
-  type: ToastNotificationType;
+  type: ToastNotification["type"];
   deleteToastNotification: () => void;
 }

@@ -1,4 +1,4 @@
-import type { ToastNotification } from "../../context/toastNotifications/types";
+import type { ToastNotification } from "../../types/toastNotification";
 
 export interface ToastNotificationsListProps {
   toastNotifications: ToastNotification[];

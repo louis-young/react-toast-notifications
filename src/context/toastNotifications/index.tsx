@@ -1,8 +1,8 @@
 import { createContext, useReducer } from "react";
 import { v4 as uuid } from "uuid";
 import { ToastNotificationsList } from "../../components/ToastNotificationsList";
+import type { ToastNotification } from "../../types/toastNotification";
 import type {
-  ToastNotification as ToastNotificationType,
   ToastNotificationReducerAction,
   ToastNotificationsContextValue,
   ToastNotificationsProviderProps,
@@ -13,7 +13,7 @@ export const ToastNotificationsContext = createContext<
 >(undefined);
 
 export const toastNotificationsReducer = (
-  toastNotifications: ToastNotificationType[],
+  toastNotifications: ToastNotification[],
   action: ToastNotificationReducerAction
 ) => {
   switch (action.type) {
@@ -26,7 +26,7 @@ export const toastNotificationsReducer = (
   }
 };
 
-const initialToastNotifications: ToastNotificationType[] = [];
+const initialToastNotifications: ToastNotification[] = [];
 
 export const ToastNotificationsProvider = ({
   children,
@@ -37,7 +37,7 @@ export const ToastNotificationsProvider = ({
   );
 
   const createToastNotification = (
-    toastNotification: Omit<ToastNotificationType, "id">
+    toastNotification: Omit<ToastNotification, "id">
   ) => {
     const id = uuid();
 
@@ -47,11 +47,7 @@ export const ToastNotificationsProvider = ({
     });
   };
 
-  const deleteToastNotification = ({
-    id,
-  }: {
-    id: ToastNotificationType["id"];
-  }) => {
+  const deleteToastNotification = ({ id }: { id: ToastNotification["id"] }) => {
     dispatchToastNotifications({ type: "delete", id });
   };
 

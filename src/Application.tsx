@@ -1,12 +1,12 @@
 import { useToastNotifications } from "./hooks/useToastNotifications";
-import type { ToastNotificationType } from "./context/toastNotifications/types";
+import type { ToastNotification } from "./types/toastNotification";
 
 export const Application = () => {
   const { toast } = useToastNotifications();
 
   const toastNotificationTypes: {
     buttonBackgroundColour: string;
-    toastNotificationType: ToastNotificationType;
+    toastNotificationType: ToastNotification["type"];
   }[] = [
     {
       buttonBackgroundColour: "bg-green-500",
@@ -40,7 +40,7 @@ export const Application = () => {
                 className={`rounded-sm py-3 px-6 shadow-md text-white font-medium capitalize ${buttonBackgroundColour}`}
                 onClick={() => {
                   toast({
-                    text: `Toast notification of type ${toastNotificationType}.`,
+                    text: "React Toast Notifications",
                     type: toastNotificationType,
                   });
                 }}
