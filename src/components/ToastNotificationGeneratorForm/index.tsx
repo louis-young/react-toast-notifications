@@ -29,7 +29,7 @@ export const ToastNotificationGeneratorForm = ({
     <form onSubmit={handleSubmit}>
       <fieldset className="flex gap-6 items-center">
         {options.map(({ label, value }) => (
-          <label className="flex gap-2 items-center">
+          <label className="flex gap-2 items-center" key={value}>
             <input
               type="radio"
               name="toast-notification-type"
