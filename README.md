@@ -69,7 +69,7 @@ None (yet).
 {
   createToastNotification: (
     toastNotification: { text: string; type: "success" | "information" | "warning" | "error" }
-  ) => { id: string; text: string; type: "success" | "information" | "warning" | "error" },,
+  ) => { id: string; text: string; type: "success" | "information" | "warning" | "error" },
   updateToastNotification: ({
     id,
     updatedToastNotification,
