@@ -69,15 +69,15 @@ None (yet).
 {
   createToastNotification: (
     toastNotification: { text: string; type: "success" | "information" | "warning" | "error" }
-  ) => ToastNotification,
+  ) => { id: string; text: string; type: "success" | "information" | "warning" | "error" },,
   updateToastNotification: ({
     id,
     updatedToastNotification,
   }: {
     id: string;
     updatedToastNotification: { text: string; type: "success" | "information" | "warning" | "error" };
-  }) => { text: string; type: "success" | "information" | "warning" | "error" },
-  deleteToastNotification: ({ id }: { id: string }) => void;
+  }) => { id: string; text: string; type: "success" | "information" | "warning" | "error" },
+  deleteToastNotification: ({ id }: { id: string }) => void
 }
 ```
 
