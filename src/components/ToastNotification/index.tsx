@@ -6,7 +6,7 @@ export const ToastNotification = ({
   deleteToastNotification,
 }: ToastNotificationProps) => {
   useEffect(() => {
-    const timeout = setInterval(deleteToastNotification, 2 * 1000); // Two seconds.
+    const timeout = setTimeout(deleteToastNotification, 2 * 1000); // Two seconds.
 
     return () => {
       clearTimeout(timeout);
