@@ -16,7 +16,7 @@ export const ToastNotification = ({
   }, [deleteToastNotification]);
 
   return (
-    <li className="rounded-md py-4 px-6 bg-white text-center flex justify-between items-center gap-2">
+    <li className="rounded-md py-4 px-6 bg-white text-center flex justify-between items-center gap-3">
       {type === "success"
         ? success
         : type === "information"
@@ -31,7 +31,7 @@ export const ToastNotification = ({
 
       <button
         onClick={deleteToastNotification}
-        className="text-gray-900 font-bold h-7 w-7 rounded-full hover:bg-white hover:bg-opacity-30"
+        className="text-gray-900 font-bold h-6 w-6 text-sm rounded-full bg-gray-100 hover:bg-gray-200"
       >
         ✕
       </button>

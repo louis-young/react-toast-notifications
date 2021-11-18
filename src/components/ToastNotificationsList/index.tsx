@@ -8,7 +8,7 @@ export const ToastNotificationsList = ({
   const { deleteToastNotification } = useToastNotificationsContext();
 
   return (
-    <ul className="fixed top-8 left-1/2 transform -translate-x-1/2 flex flex-col gap-4 w-full max-w-xs">
+    <ul className="fixed top-12 right-12 flex flex-col gap-4 w-full max-w-md">
       {toastNotifications.map(({ id, text, type }) => (
         <ToastNotification
           text={text}
