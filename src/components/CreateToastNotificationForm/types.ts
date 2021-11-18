@@ -1,6 +1,6 @@
 import type { ToastNotification } from "../../types/toastNotification";
 
-export interface ToastNotificationGeneratorFormProps {
+export interface CreateToastNotificationFormProps {
   selectedToastNotificationType: ToastNotification["type"];
   onSelectedToastNotificationTypeChange: (
     newSelectedToastNotificationType: ToastNotification["type"]

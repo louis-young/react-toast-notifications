@@ -1,8 +1,8 @@
-import type { FormEvent } from "react";
 import { useToastNotifications } from "../../hooks/useToastNotifications";
-import type { ToastNotification } from "../../types/toastNotification";
 import { Separator } from "../Separator";
-import type { ToastNotificationGeneratorFormProps } from "./types";
+import type { FormEvent } from "react";
+import type { ToastNotification } from "../../types/toastNotification";
+import type { CreateToastNotificationFormProps } from "./types";
 
 const options = [
   { label: "Success", value: "success" },
@@ -11,26 +11,32 @@ const options = [
   { label: "Error", value: "error" },
 ];
 
-export const ToastNotificationGeneratorForm = ({
+export const CreateToastNotificationForm = ({
   selectedToastNotificationType,
   onSelectedToastNotificationTypeChange,
-}: ToastNotificationGeneratorFormProps) => {
-  const { toast } = useToastNotifications();
+}: CreateToastNotificationFormProps) => {
+  const { createToastNotification } = useToastNotifications();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    toast({
+    createToastNotification({
       text: "Lorem ipsum dolor ipsum dolor ipsum dolor",
       type: selectedToastNotificationType,
     });
   };
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} aria-label="Create Toast Notification Form">
       <fieldset className="flex gap-6 items-center">
         {options.map(({ label, value }) => (
-          <label className="flex gap-2 items-center" key={value}>
+          <label
+            className="flex gap-2 items-center"
+            key={value}
+            htmlFor={value}
+          >
             <input
+              id={value}
               type="radio"
               name="toast-notification-type"
               onChange={
@@ -51,7 +57,17 @@ export const ToastNotificationGeneratorForm = ({
 
       <fieldset>
         <button
-          className="rounded-sm py-3 px-6 shadow-md text-white bg-indigo-600 font-medium transition capitalize hover:bg-indigo-500"
+          className={`rounded-sm py-3 px-6 shadow-md text-white font-medium transition capitalize hover:opacity-80 ${
+            selectedToastNotificationType === "success"
+              ? "bg-green-600"
+              : selectedToastNotificationType === "information"
+              ? "bg-blue-600"
+              : selectedToastNotificationType === "warning"
+              ? "bg-yellow-600"
+              : selectedToastNotificationType === "error"
+              ? "bg-red-600"
+              : "bg-blue-600"
+          }`}
           type="submit"
         >
           Create Toast Notification

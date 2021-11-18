@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Separator } from "./components/Separator";
-import { ToastNotificationGeneratorForm } from "./components/ToastNotificationGeneratorForm";
+import { CreateToastNotificationForm } from "./components/CreateToastNotificationForm";
 
 import type { ToastNotification } from "./types/toastNotification";
 
@@ -22,7 +22,7 @@ export const Application = () => {
 
       <Separator />
 
-      <ToastNotificationGeneratorForm
+      <CreateToastNotificationForm
         selectedToastNotificationType={selectedToastNotificationType}
         onSelectedToastNotificationTypeChange={
           handleSelectedToastNotificationTypeChange

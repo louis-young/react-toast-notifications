@@ -6,11 +6,9 @@ export const useToastNotifications = () => {
 
   if (!context) {
     throw new Error(
-      "`useToastNotifications` must be used within a `ToastNotificationsProvider`."
+      "`useToastNotificationsContext` must be used within a `ToastNotificationsProvider`."
     );
   }
 
-  const { createToastNotification: toast } = context;
-
-  return { toast };
+  return context;
 };

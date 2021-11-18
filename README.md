@@ -11,7 +11,7 @@ A toast notification library for React.
 1. Wrap your component(s) in a `ToastNotificationsProvider`.
 
 ```tsx
-import { ToastNotificationsProvider } from "./context/toastNotifications";
+import { ToastNotificationsProvider } from "@louis-young/react-toast-notifications";
 
 // ...
 
@@ -21,17 +21,21 @@ import { ToastNotificationsProvider } from "./context/toastNotifications";
 2. Access the toast notifications.
 
 ```tsx
-import { useToastNotifications } from "../../hooks/useToastNotifications";
+import { useToastNotifications } from "@louis-young/react-toast-notifications";
 
 // ...
 
-const { toast } = useToastNotifications();
+const {
+  createToastNotification,
+  updateToastNotification,
+  deleteToastNotification,
+} = useToastNotifications();
 ```
 
 3. Create a toast notification.
 
 ```tsx
-toast({
+createToastNotification({
   text: "Lorem ipsum dolor ipsum dolor ipsum dolor",
   type: "success",
 });
@@ -61,7 +65,23 @@ None (yet).
 
 #### Returns
 
-- `toast` - A function used to create toast notifications.
+```tsx
+{
+  createToastNotification: (
+    toastNotification: { text: string; type: "success" | "information" | "warning" | "error" }
+  ) => ToastNotification,
+  updateToastNotification: ({
+    id,
+    updatedToastNotification,
+  }: {
+    id: string;
+    updatedToastNotification: { text: string; type: "success" | "information" | "warning" | "error" };
+  }) => { text: string; type: "success" | "information" | "warning" | "error" },
+  deleteToastNotification: ({ id }: { id: string }) => void;
+}
+```
+
+- `createToastNotification` - A function used to create a toast notification.
 
 ```ts
 (toastNotification: {
@@ -74,10 +94,29 @@ None (yet).
 };
 ```
 
+- `updateToastNotification` - A function used to update a toast notification.
+
+```ts
+({id: string, updatedToastNotification: {
+  text: string;
+  type: "success" | "information" | "warning" | "error";
+}}) => {
+  id: string;
+  text: string;
+  type: "success" | "information" | "warning" | "error";
+};
+```
+
+- `deleteToastNotification` - A function used to delete a toast notification.
+
+```ts
+({id: string }) => void;
+```
+
 #### Examples
 
 ```tsx
-import { useToastNotifications } from "../../hooks/useToastNotifications";
+import { useToastNotifications } from "@louis-young/react-toast-notifications";
 
 // ...
 

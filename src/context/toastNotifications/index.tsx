@@ -19,6 +19,12 @@ export const toastNotificationsReducer = (
   switch (action.type) {
     case "create":
       return [...toastNotifications, action.toastNotification];
+    case "update":
+      return toastNotifications.map((toastNotification) =>
+        toastNotification.id === action.id
+          ? { id: action.id, ...action.updatedToastNotification }
+          : toastNotification
+      );
     case "delete":
       return toastNotifications.filter(
         (toastNotification) => toastNotification.id !== action.id
@@ -52,6 +58,27 @@ export const ToastNotificationsProvider = ({
     []
   );
 
+  const updateToastNotification = useCallback(
+    ({
+      id,
+      updatedToastNotification,
+    }: {
+      id: ToastNotification["id"];
+      updatedToastNotification: Omit<ToastNotification, "id">;
+    }) => {
+      const toastNotificationToUpdate = { id, ...updatedToastNotification };
+
+      dispatchToastNotifications({
+        type: "update",
+        id,
+        updatedToastNotification: toastNotificationToUpdate,
+      });
+
+      return toastNotificationToUpdate;
+    },
+    []
+  );
+
   const deleteToastNotification = useCallback(
     ({ id }: { id: ToastNotification["id"] }) => {
       dispatchToastNotifications({ type: "delete", id });
@@ -63,8 +90,9 @@ export const ToastNotificationsProvider = ({
     () => ({
       createToastNotification,
       deleteToastNotification,
+      updateToastNotification,
     }),
-    [createToastNotification, deleteToastNotification]
+    [createToastNotification, updateToastNotification, deleteToastNotification]
   );
 
   return (
