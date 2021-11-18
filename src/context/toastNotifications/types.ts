@@ -1,16 +1,17 @@
 import type { ReactNode } from "react";
 
+export type ToastNotificationType = "success" | "error";
+
 export interface ToastNotification {
-  text: string;
   id: string;
+  text: string;
+  type: ToastNotificationType;
 }
 
 export type ToastNotificationsContextValue = {
-  createToastNotification: ({
-    text,
-  }: {
-    text: ToastNotification["text"];
-  }) => void;
+  createToastNotification: (
+    toastNotification: Omit<ToastNotification, "id">
+  ) => void;
   deleteToastNotification: ({ id }: { id: ToastNotification["id"] }) => void;
 };
 

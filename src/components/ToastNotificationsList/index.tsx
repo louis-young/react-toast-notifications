@@ -9,9 +9,10 @@ export const ToastNotificationsList = ({
 
   return (
     <ul className="fixed top-8 left-1/2 transform -translate-x-1/2 flex flex-col gap-4">
-      {toastNotifications.map(({ id, text }) => (
+      {toastNotifications.map(({ id, text, type }) => (
         <ToastNotification
           text={text}
+          type={type}
           deleteToastNotification={() => deleteToastNotification({ id })}
           key={id}
         />

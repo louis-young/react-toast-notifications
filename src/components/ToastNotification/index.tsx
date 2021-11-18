@@ -1,8 +1,10 @@
+import classNames from "classnames";
 import { useEffect } from "react";
 import type { ToastNotificationProps } from "./types";
 
 export const ToastNotification = ({
   text,
+  type,
   deleteToastNotification,
 }: ToastNotificationProps) => {
   useEffect(() => {
@@ -14,7 +16,13 @@ export const ToastNotification = ({
   }, [deleteToastNotification]);
 
   return (
-    <li className="rounded-md py-4 px-6 bg-gray-800">
+    <li
+      className={classNames({
+        "rounded-md py-4 px-6 bg-white": true,
+        "bg-green-500": type === "success",
+        "bg-red-500": type === "error",
+      })}
+    >
       <p className="text-white text-md font-medium">{text}</p>
     </li>
   );

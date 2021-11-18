@@ -36,19 +36,15 @@ export const ToastNotificationsProvider = ({
     initialToastNotifications
   );
 
-  const createToastNotification = ({
-    text,
-  }: {
-    text: ToastNotificationType["text"];
-  }) => {
+  const createToastNotification = (
+    toastNotification: Omit<ToastNotificationType, "id">
+  ) => {
     const id = uuid();
 
-    const toastNotification = {
-      id,
-      text,
-    };
-
-    dispatchToastNotifications({ type: "create", toastNotification });
+    dispatchToastNotifications({
+      type: "create",
+      toastNotification: { ...toastNotification, id },
+    });
   };
 
   const deleteToastNotification = ({
