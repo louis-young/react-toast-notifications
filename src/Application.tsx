@@ -13,6 +13,14 @@ export const Application = () => {
       toastNotificationType: "success",
     },
     {
+      buttonBackgroundColour: "bg-blue-500",
+      toastNotificationType: "information",
+    },
+    {
+      buttonBackgroundColour: "bg-yellow-500",
+      toastNotificationType: "warning",
+    },
+    {
       buttonBackgroundColour: "bg-red-500",
       toastNotificationType: "error",
     },
@@ -32,7 +40,7 @@ export const Application = () => {
                 className={`rounded-sm py-3 px-6 shadow-md text-white font-medium capitalize ${buttonBackgroundColour}`}
                 onClick={() => {
                   toast({
-                    text: `A ${toastNotificationType} toast notification.`,
+                    text: `Toast notification of type ${toastNotificationType}.`,
                     type: toastNotificationType,
                   });
                 }}
