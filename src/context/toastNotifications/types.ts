@@ -4,7 +4,7 @@ import type { ToastNotification } from "../../types/toastNotification";
 export type ToastNotificationsContextValue = {
   createToastNotification: (
     toastNotification: Omit<ToastNotification, "id">
-  ) => void;
+  ) => ToastNotification;
   deleteToastNotification: ({ id }: { id: ToastNotification["id"] }) => void;
 };
 

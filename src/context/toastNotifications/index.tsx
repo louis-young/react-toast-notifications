@@ -40,10 +40,14 @@ export const ToastNotificationsProvider = ({
     (toastNotification: Omit<ToastNotification, "id">) => {
       const id = uuid();
 
+      const toastNotificationToCreate = { ...toastNotification, id };
+
       dispatchToastNotifications({
         type: "create",
-        toastNotification: { ...toastNotification, id },
+        toastNotification: toastNotificationToCreate,
       });
+
+      return toastNotificationToCreate;
     },
     []
   );

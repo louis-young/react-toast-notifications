@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import { useEffect } from "react";
 import { error, information, success, warning } from "../../assets/icons";
 import { useToastNotificationsContext } from "../../hooks/useToastNotificationsContext";
 import type { ToastNotificationProps } from "./types";
@@ -13,7 +13,7 @@ export const ToastNotification = ({
   useEffect(() => {
     const timeout = setTimeout(() => {
       deleteToastNotification({ id });
-    }, 3 * 1000); // Four seconds.
+    }, 4 * 1000); // Four seconds.
 
     return () => {
       clearTimeout(timeout);
