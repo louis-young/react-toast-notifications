@@ -156,5 +156,5 @@ updateToastNotification({ id, { text, type: "information" }});
  * Delete the toast notification.
  */
 
-deleteToastNotification({ id })
+deleteToastNotification({ id });
 ```
