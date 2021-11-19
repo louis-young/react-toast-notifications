@@ -10,6 +10,16 @@ export const ToastNotification = ({
 }: ToastNotificationProps) => {
   const { deleteToastNotification } = useToastNotifications();
 
+  // const [createdTimestamp] = useState(() => performance.now());
+
+  // const currentTimestamp = performance.now();
+
+  // const timeRemainingPercentage =
+  //   100 *
+  //   (1 -
+  //     (currentTimestamp - createdTimestamp) /
+  //       (createdTimestamp + displayTime - createdTimestamp));
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       deleteToastNotification({ id });
