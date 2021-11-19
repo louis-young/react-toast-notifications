@@ -21,7 +21,7 @@ export const CreateToastNotificationForm = ({
     event.preventDefault();
 
     createToastNotification({
-      text: "Lorem ipsum dolor ipsum dolor ipsum dolor",
+      text: `Created the ${selectedToastNotificationType} toast notification`,
       type: selectedToastNotificationType,
     });
   };
