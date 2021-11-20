@@ -5,14 +5,20 @@ import { ToastNotificationDuration } from "../ToastNotificationDuration";
 import type { ToastNotificationProps } from "./types";
 
 export const ToastNotification = memo(
-  ({ id, text, type }: ToastNotificationProps) => {
+  ({ id, text, type, options }: ToastNotificationProps) => {
     const { deleteToastNotification } = useToastNotifications();
 
     const duration = 4 * 1000; // Four seconds.
 
     const isDismissible = false;
 
+    const { automaticallyDismiss } = options ?? {};
+
     useEffect(() => {
+      if (!automaticallyDismiss) {
+        return;
+      }
+
       const timeout = setTimeout(() => {
         deleteToastNotification({ id });
       }, duration);
@@ -20,11 +26,11 @@ export const ToastNotification = memo(
       return () => {
         clearTimeout(timeout);
       };
-    }, [deleteToastNotification, id, duration]);
+    }, [automaticallyDismiss, deleteToastNotification, id, duration]);
 
     return (
       <li className="relative">
-        <div className="rounded-t-sm py-4 px-6 bg-white text-center flex items-center gap-6">
+        <div className="rounded-sm py-4 px-6 bg-white text-center flex items-center gap-6">
           {type === "success"
             ? success
             : type === "information"
@@ -49,7 +55,9 @@ export const ToastNotification = memo(
           )}
         </div>
 
-        <ToastNotificationDuration duration={duration} />
+        {automaticallyDismiss && (
+          <ToastNotificationDuration duration={duration} />
+        )}
       </li>
     );
   }

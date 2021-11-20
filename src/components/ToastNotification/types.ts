@@ -4,4 +4,5 @@ export interface ToastNotificationProps {
   id: ToastNotification["id"];
   text: ToastNotification["text"];
   type: ToastNotification["type"];
+  options?: ToastNotification["options"];
 }

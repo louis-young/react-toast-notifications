@@ -23,6 +23,9 @@ export const CreateToastNotificationForm = ({
     createToastNotification({
       text: `Created the ${selectedToastNotificationType} toast notification`,
       type: selectedToastNotificationType,
+      options: {
+        automaticallyDismiss: false,
+      },
     });
   };
 
