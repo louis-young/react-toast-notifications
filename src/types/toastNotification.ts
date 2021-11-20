@@ -1,6 +1,9 @@
 type ToastNotificationType = "success" | "information" | "warning" | "error";
 
-export type ToastNotificationOptions = { automaticallyDismiss?: boolean };
+type ToastNotificationOptions = {
+  shouldAutomaticallyDismiss?: boolean;
+  isDismissible?: boolean;
+};
 export interface ToastNotification {
   id: string;
   text: string;

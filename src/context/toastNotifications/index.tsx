@@ -36,6 +36,8 @@ const initialToastNotifications: ToastNotification[] = [];
 
 export const ToastNotificationsProvider = ({
   children,
+  shouldAutomaticallyDismiss = true,
+  areNotificationsDismissible = false,
 }: ToastNotificationsProviderProps) => {
   const [toastNotifications, dispatchToastNotifications] = useReducer(
     toastNotificationsReducer,
@@ -46,7 +48,19 @@ export const ToastNotificationsProvider = ({
     (toastNotification: Omit<ToastNotification, "id">) => {
       const id = uuid();
 
-      const toastNotificationToCreate = { ...toastNotification, id };
+      const toastNotificationToCreate = {
+        id,
+        ...toastNotification,
+        options: {
+          ...toastNotification.options,
+          shouldAutomaticallyDismiss:
+            toastNotification.options?.shouldAutomaticallyDismiss ??
+            shouldAutomaticallyDismiss,
+          isDismissible:
+            toastNotification.options?.isDismissible ??
+            areNotificationsDismissible,
+        },
+      };
 
       dispatchToastNotifications({
         type: "create",
@@ -55,7 +69,7 @@ export const ToastNotificationsProvider = ({
 
       return toastNotificationToCreate;
     },
-    []
+    [shouldAutomaticallyDismiss, areNotificationsDismissible]
   );
 
   const updateToastNotification = useCallback(

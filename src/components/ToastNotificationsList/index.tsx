@@ -11,8 +11,8 @@ export const ToastNotificationsList = ({
           id={id}
           text={text}
           type={type}
-          key={id}
           options={options}
+          key={id}
         />
       ))}
     </ul>

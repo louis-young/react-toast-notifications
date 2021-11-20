@@ -5,4 +5,5 @@ export interface CreateToastNotificationFormProps {
   onSelectedToastNotificationTypeChange: (
     newSelectedToastNotificationType: ToastNotification["type"]
   ) => void;
+  onSubmit: (selectedToastNotificationType: ToastNotification["type"]) => void;
 }

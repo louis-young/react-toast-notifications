@@ -17,6 +17,8 @@ export type ToastNotificationsContextValue = {
 
 export interface ToastNotificationsProviderProps {
   children: ReactNode;
+  shouldAutomaticallyDismiss?: boolean;
+  areNotificationsDismissible?: boolean;
 }
 
 export type ToastNotificationReducerAction =

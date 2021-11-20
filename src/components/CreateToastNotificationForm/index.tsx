@@ -1,4 +1,3 @@
-import { useToastNotifications } from "../../hooks/useToastNotifications";
 import { Separator } from "../Separator";
 import type { FormEvent } from "react";
 import type { ToastNotification } from "../../types/toastNotification";
@@ -14,19 +13,12 @@ const options = [
 export const CreateToastNotificationForm = ({
   selectedToastNotificationType,
   onSelectedToastNotificationTypeChange,
+  onSubmit,
 }: CreateToastNotificationFormProps) => {
-  const { createToastNotification } = useToastNotifications();
-
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    createToastNotification({
-      text: `Created the ${selectedToastNotificationType} toast notification`,
-      type: selectedToastNotificationType,
-      options: {
-        automaticallyDismiss: false,
-      },
-    });
+    onSubmit(selectedToastNotificationType);
   };
 
   return (
@@ -35,18 +27,17 @@ export const CreateToastNotificationForm = ({
         {options.map(({ label, value }) => (
           <label
             className="flex gap-2 items-center"
-            key={value}
             htmlFor={value}
+            key={value}
           >
             <input
               id={value}
               type="radio"
               name="toast-notification-type"
-              onChange={
-                (event) =>
-                  onSelectedToastNotificationTypeChange(
-                    event.target.value as ToastNotification["type"]
-                  ) // Fix as.
+              onChange={(event) =>
+                onSelectedToastNotificationTypeChange(
+                  event.target.value as ToastNotification["type"]
+                )
               }
               value={value}
               checked={selectedToastNotificationType === value}

@@ -1,21 +1,20 @@
 import { memo, useEffect } from "react";
 import { error, information, success, warning } from "../../assets/icons";
-import { useToastNotifications } from "../../hooks/useToastNotifications";
+import { useToastNotificationsContext } from "../../hooks/useToastNotificationsContext";
 import { ToastNotificationDuration } from "../ToastNotificationDuration";
 import type { ToastNotificationProps } from "./types";
 
 export const ToastNotification = memo(
   ({ id, text, type, options }: ToastNotificationProps) => {
-    const { deleteToastNotification } = useToastNotifications();
+    const { deleteToastNotification } = useToastNotificationsContext();
 
     const duration = 4 * 1000; // Four seconds.
 
-    const isDismissible = false;
-
-    const { automaticallyDismiss } = options ?? {};
+    const { shouldAutomaticallyDismiss = true, isDismissible = false } =
+      options ?? {};
 
     useEffect(() => {
-      if (!automaticallyDismiss) {
+      if (!shouldAutomaticallyDismiss) {
         return;
       }
 
@@ -26,7 +25,7 @@ export const ToastNotification = memo(
       return () => {
         clearTimeout(timeout);
       };
-    }, [automaticallyDismiss, deleteToastNotification, id, duration]);
+    }, [shouldAutomaticallyDismiss, deleteToastNotification, id, duration]);
 
     return (
       <li className="relative">
@@ -55,7 +54,7 @@ export const ToastNotification = memo(
           )}
         </div>
 
-        {automaticallyDismiss && (
+        {shouldAutomaticallyDismiss && (
           <ToastNotificationDuration duration={duration} />
         )}
       </li>
