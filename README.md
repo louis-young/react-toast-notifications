@@ -52,9 +52,11 @@ A context provider that provides the toast notifications context to it's descend
 ({
   children,
   shouldAutomaticallyDismiss,
+  areNotificationsDismissible,
 }: {
   children: ReactNode;
   shouldAutomaticallyDismiss?: boolean;
+  areNotificationsDismissible?: boolean;
 }) => JSX.Element;
 ```
 
