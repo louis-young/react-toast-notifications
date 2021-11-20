@@ -99,13 +99,13 @@ const toast = useToastNotifications();
 
 // ...
 
-toast.success("Lorem ipsum dolor sit amet");
-
 toast.information("Lorem ipsum dolor sit amet");
 
-toast.warning("Lorem ipsum dolor sit amet");
+// Or...
 
-toast.error("Lorem ipsum dolor sit amet");
+const { success, information, warning, error } = useToastNotifications();
+
+information("Lorem ipsum dolor sit amet");
 ```
 
 ##### Returns
