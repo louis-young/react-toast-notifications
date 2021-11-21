@@ -8,10 +8,11 @@ export const ToastNotification = memo(
   ({ id, text, type, options }: ToastNotificationProps) => {
     const { deleteToastNotification } = useToastNotificationsContext();
 
-    const duration = 4 * 1000; // Four seconds.
-
-    const { shouldAutomaticallyDismiss = true, isDismissible = false } =
-      options ?? {};
+    const {
+      shouldAutomaticallyDismiss = true,
+      isDismissible = true,
+      duration = 40 * 1000, // Four seconds.
+    } = options ?? {};
 
     useEffect(() => {
       if (!shouldAutomaticallyDismiss) {
@@ -47,7 +48,7 @@ export const ToastNotification = memo(
           {isDismissible && (
             <button
               onClick={() => deleteToastNotification({ id })}
-              className="text-gray-900 font-bold h-6 w-6 text-sm rounded-full bg-gray-100 hover:bg-gray-200"
+              className="text-gray-400 font-bold h-6 w-6 text-sm absolute top-0.5 right-0.5 transition  hover:text-gray-600"
             >
               ✕
             </button>

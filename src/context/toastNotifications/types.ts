@@ -1,3 +1,4 @@
+import { ToastNotificationsListPosition } from "../../components/ToastNotificationsList/types";
 import type { ReactNode } from "react";
 import type { ToastNotification } from "../../types/toastNotification";
 
@@ -15,10 +16,15 @@ export type ToastNotificationsContextValue = {
   deleteToastNotification: ({ id }: { id: ToastNotification["id"] }) => void;
 };
 
+export interface ToastNotificationsProviderOptions {
+  shouldAutomaticallyDismiss: boolean;
+  areNotificationsDismissible: boolean;
+  duration: number;
+  position: ToastNotificationsListPosition;
+}
 export interface ToastNotificationsProviderProps {
   children: ReactNode;
-  shouldAutomaticallyDismiss?: boolean;
-  areNotificationsDismissible?: boolean;
+  options?: Partial<ToastNotificationsProviderOptions>;
 }
 
 export type ToastNotificationReducerAction =

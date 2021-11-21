@@ -13,12 +13,14 @@ const options = [
 export const CreateToastNotificationForm = ({
   selectedToastNotificationType,
   onSelectedToastNotificationTypeChange,
+  shouldAutomaticallyDismiss,
+  onShouldAutomaticallyDismissChange,
   onSubmit,
 }: CreateToastNotificationFormProps) => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    onSubmit(selectedToastNotificationType);
+    onSubmit({ selectedToastNotificationType, shouldAutomaticallyDismiss });
   };
 
   return (
@@ -45,6 +47,27 @@ export const CreateToastNotificationForm = ({
             <h4 className="text-gray-900 font-medium">{label}</h4>
           </label>
         ))}
+      </fieldset>
+
+      <Separator />
+
+      <fieldset>
+        <label
+          htmlFor="automatically-dismiss"
+          className="flex gap-2 items-center"
+        >
+          <input
+            type="checkbox"
+            name="automatically-dismiss"
+            id="automatically-dismiss"
+            checked={shouldAutomaticallyDismiss}
+            onChange={(event) =>
+              onShouldAutomaticallyDismissChange(event.target.checked)
+            }
+          />
+
+          <h4 className="text-gray-900 font-medium">Automatically dismiss</h4>
+        </label>
       </fieldset>
 
       <Separator />

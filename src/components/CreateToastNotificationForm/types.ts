@@ -5,5 +5,15 @@ export interface CreateToastNotificationFormProps {
   onSelectedToastNotificationTypeChange: (
     newSelectedToastNotificationType: ToastNotification["type"]
   ) => void;
-  onSubmit: (selectedToastNotificationType: ToastNotification["type"]) => void;
+  shouldAutomaticallyDismiss: boolean;
+  onShouldAutomaticallyDismissChange: (
+    newShouldAutomaticallyDismiss: boolean
+  ) => void;
+  onSubmit: ({
+    selectedToastNotificationType,
+    shouldAutomaticallyDismiss,
+  }: {
+    selectedToastNotificationType: ToastNotification["type"];
+    shouldAutomaticallyDismiss: boolean;
+  }) => void;
 }

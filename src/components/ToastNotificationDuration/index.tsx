@@ -22,7 +22,7 @@ const Duration = styled.div`
   background-color: #bdbdbd;
   animation-name: ${deplete};
   animation-duration: ${({ duration }: { duration: number }) =>
-    `${duration / 1000}s`}; /* Convert duration to seconds. */
+    `${duration / 1000}s`}; /* Convert duration from milliseconds to seconds. */
   animation-timing-function: linear;
 `;
 

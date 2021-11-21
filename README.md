@@ -51,20 +51,42 @@ A context provider that provides the toast notifications context to it's descend
 ```ts
 ({
   children,
-  shouldAutomaticallyDismiss,
-  areNotificationsDismissible,
+  options: {
+    shouldAutomaticallyDismiss,
+    areNotificationsDismissible,
+    duration,
+  },
 }: {
   children: ReactNode;
-  shouldAutomaticallyDismiss?: boolean;
-  areNotificationsDismissible?: boolean;
+  options?: {
+    shouldAutomaticallyDismiss?: boolean;
+    areNotificationsDismissible?: boolean;
+    duration?: number;
+  };
 }) => JSX.Element;
 ```
 
 - `children`
 
+```ts
+ReactNode;
+```
+
 The tree you wrap the provider in.
 
+- `options`
+
+```ts
+options?: {
+    shouldAutomaticallyDismiss?: boolean;
+    areNotificationsDismissible?: boolean;
+    duration?: number;
+};
+```
+
 - `shouldAutomaticallyDismiss`
+
+Defaults to `true`.
 
 A boolean to determine whether or not the toast notifications should automatically dismiss.
 
@@ -72,7 +94,17 @@ A boolean to determine whether or not the toast notifications should automatical
 
 - `areNotificationsDismissible`
 
+Defaults to `false`.
+
 A boolean to determine whether or not the toast notifications should be dismissible.
+
+**NOTE: This can be overridden by specifying this option when creating a toast notification.**
+
+- `duration`
+
+Defaults to `4000`.
+
+The duration the toast notification is visible for in milliseconds.
 
 **NOTE: This can be overridden by specifying this option when creating a toast notification.**
 
@@ -101,11 +133,27 @@ const toast = useToastNotifications();
 
 toast.information("Lorem ipsum dolor sit amet");
 
+// Or with options...
+
+toast.information("Lorem ipsum dolor sit amet", {
+  shouldAutomaticallyDismiss: true,
+  isDismissible: false,
+  duration: 4 * 1000, // Four seconds.
+});
+
 // Or...
 
 const { success, information, warning, error } = useToastNotifications();
 
 information("Lorem ipsum dolor sit amet");
+
+// Or with options...
+
+information("Lorem ipsum dolor sit amet", {
+  shouldAutomaticallyDismiss: true,
+  isDismissible: false,
+  duration: 4 * 1000, // Four seconds.
+});
 ```
 
 ##### Returns
@@ -113,18 +161,48 @@ information("Lorem ipsum dolor sit amet");
 ```ts
 {
   success: (
-    text: string
+    text: string,
+    options?: {
+      shouldAutomaticallyDismiss?: boolean;
+      isDismissible?: boolean;
+      duration?: number;
+    }
   ) => { id: string; text: string; type: "success" },
-  information: (text: string) => { id: string; text: string; type: "information" },
-  warning: (text: string) => { id: string; text: string; type: "warning" },
-  error: (text: string) => { id: string; text: string; type: "error" },
+  information: (
+    text: string,
+    options?: {
+      shouldAutomaticallyDismiss?: boolean;
+      isDismissible?: boolean;
+      duration?: number;
+    }) => { id: string; text: string; type: "information" },
+  warning: (
+    text: string,
+    options?: {
+      shouldAutomaticallyDismiss?: boolean;
+      isDismissible?: boolean;
+      duration?: number;
+    }) => { id: string; text: string; type: "warning" },
+  error: (
+    text: string,
+    options?: {
+      shouldAutomaticallyDismiss?: boolean;
+      isDismissible?: boolean;
+      duration?: number;
+    }) => { id: string; text: string; type: "error" },
 }
 ```
 
 - `success` - A function to create a success toast notification.
 
 ```ts
-(text: string) => {
+(
+  text: string,
+  options?: {
+    shouldAutomaticallyDismiss?: boolean;
+    isDismissible?: boolean;
+    duration?: number;
+  }
+) => {
   id: string;
   text: string;
   type: "success";
@@ -134,7 +212,14 @@ information("Lorem ipsum dolor sit amet");
 - `information` - A function to create an information toast notification.
 
 ```ts
-(text: string) => {
+(
+  text: string,
+  options?: {
+    shouldAutomaticallyDismiss?: boolean;
+    isDismissible?: boolean;
+    duration?: number;
+  }
+) => {
   id: string;
   text: string;
   type: "information";
@@ -144,7 +229,14 @@ information("Lorem ipsum dolor sit amet");
 - `warning` - A function to create a warning toast notification.
 
 ```ts
-(text: string) => {
+(
+  text: string,
+  options?: {
+    shouldAutomaticallyDismiss?: boolean;
+    isDismissible?: boolean;
+    duration?: number;
+  }
+) => {
   id: string;
   text: string;
   type: "warning";
@@ -154,7 +246,14 @@ information("Lorem ipsum dolor sit amet");
 - `error` - A function to create an error toast notification.
 
 ```ts
-(text: string) => {
+(
+  text: string,
+  options?: {
+    shouldAutomaticallyDismiss?: boolean;
+    isDismissible?: boolean;
+    duration?: number;
+  }
+) => {
   id: string;
   text: string;
   type: "error";

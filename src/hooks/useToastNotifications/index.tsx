@@ -13,35 +13,54 @@ export const useToastNotifications = () => {
 
   const { createToastNotification } = context;
 
-  const success = (text: ToastNotification["text"]) => {
+  const success = (
+    text: ToastNotification["text"],
+    options: ToastNotification["options"]
+  ) => {
     const toastNotification = createToastNotification({
       text,
       type: "success",
+      options,
     });
 
     return toastNotification;
   };
 
-  const information = (text: ToastNotification["text"]) => {
+  const information = (
+    text: ToastNotification["text"],
+    options: ToastNotification["options"]
+  ) => {
     const toastNotification = createToastNotification({
       text,
       type: "information",
+      options,
     });
 
     return toastNotification;
   };
 
-  const warning = (text: ToastNotification["text"]) => {
+  const warning = (
+    text: ToastNotification["text"],
+    options: ToastNotification["options"]
+  ) => {
     const toastNotification = createToastNotification({
       text,
       type: "warning",
+      options,
     });
 
     return toastNotification;
   };
 
-  const error = (text: ToastNotification["text"]) => {
-    const toastNotification = createToastNotification({ text, type: "error" });
+  const error = (
+    text: ToastNotification["text"],
+    options: ToastNotification["options"]
+  ) => {
+    const toastNotification = createToastNotification({
+      text,
+      type: "error",
+      options,
+    });
 
     return toastNotification;
   };

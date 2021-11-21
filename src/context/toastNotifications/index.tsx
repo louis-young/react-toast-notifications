@@ -5,6 +5,7 @@ import type { ToastNotification } from "../../types/toastNotification";
 import type {
   ToastNotificationReducerAction,
   ToastNotificationsContextValue,
+  ToastNotificationsProviderOptions,
   ToastNotificationsProviderProps,
 } from "./types";
 
@@ -34,15 +35,33 @@ export const toastNotificationsReducer = (
 
 const initialToastNotifications: ToastNotification[] = [];
 
+const defaultOptions: ToastNotificationsProviderOptions = {
+  shouldAutomaticallyDismiss: true,
+  areNotificationsDismissible: true,
+  duration: 4 * 1000, // Four seconds.
+  position: "top",
+};
+
 export const ToastNotificationsProvider = ({
   children,
-  shouldAutomaticallyDismiss = true,
-  areNotificationsDismissible = false,
+  options = defaultOptions,
 }: ToastNotificationsProviderProps) => {
   const [toastNotifications, dispatchToastNotifications] = useReducer(
     toastNotificationsReducer,
     initialToastNotifications
   );
+
+  const mergedOptions = {
+    ...defaultOptions,
+    ...options,
+  };
+
+  const {
+    shouldAutomaticallyDismiss,
+    areNotificationsDismissible,
+    duration,
+    position,
+  } = mergedOptions;
 
   const createToastNotification = useCallback(
     (toastNotification: Omit<ToastNotification, "id">) => {
@@ -53,6 +72,7 @@ export const ToastNotificationsProvider = ({
         ...toastNotification,
         options: {
           ...toastNotification.options,
+          duration: toastNotification.options?.duration ?? duration,
           shouldAutomaticallyDismiss:
             toastNotification.options?.shouldAutomaticallyDismiss ??
             shouldAutomaticallyDismiss,
@@ -69,7 +89,7 @@ export const ToastNotificationsProvider = ({
 
       return toastNotificationToCreate;
     },
-    [shouldAutomaticallyDismiss, areNotificationsDismissible]
+    [duration, shouldAutomaticallyDismiss, areNotificationsDismissible]
   );
 
   const updateToastNotification = useCallback(
@@ -111,7 +131,10 @@ export const ToastNotificationsProvider = ({
 
   return (
     <ToastNotificationsContext.Provider value={value}>
-      <ToastNotificationsList toastNotifications={toastNotifications} />
+      <ToastNotificationsList
+        toastNotifications={toastNotifications}
+        position={position}
+      />
 
       {children}
     </ToastNotificationsContext.Provider>
