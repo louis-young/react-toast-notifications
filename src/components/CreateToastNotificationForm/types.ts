@@ -3,11 +3,11 @@ import type { ToastNotification } from "../../types/toastNotification";
 export interface CreateToastNotificationFormProps {
   selectedToastNotificationType: ToastNotification["type"];
   onSelectedToastNotificationTypeChange: (
-    newSelectedToastNotificationType: ToastNotification["type"]
+    newSelectedToastNotificationType: ToastNotification["type"],
   ) => void;
   shouldAutomaticallyDismiss: boolean;
   onShouldAutomaticallyDismissChange: (
-    newShouldAutomaticallyDismiss: boolean
+    newShouldAutomaticallyDismiss: boolean,
   ) => void;
   onSubmit: ({
     selectedToastNotificationType,
