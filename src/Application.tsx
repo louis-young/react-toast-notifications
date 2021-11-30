@@ -15,17 +15,17 @@ export const Application = () => {
     useState<ToastNotification["type"]>(initialSelectedToastNotificationType);
 
   const [shouldAutomaticallyDismiss, setShouldAutomaticallyDismiss] = useState(
-    initialShouldAutomaticallyDismiss
+    initialShouldAutomaticallyDismiss,
   );
 
   const handleSelectedToastNotificationTypeChange = (
-    newSelectedToastNotificationType: ToastNotification["type"]
+    newSelectedToastNotificationType: ToastNotification["type"],
   ) => {
     setSelectedToastNotificationType(newSelectedToastNotificationType);
   };
 
   const handleShouldAutomaticallyDismissChange = (
-    newShouldAutomaticallyDismiss: boolean
+    newShouldAutomaticallyDismiss: boolean,
   ) => {
     setShouldAutomaticallyDismiss(newShouldAutomaticallyDismiss);
   };
@@ -41,7 +41,7 @@ export const Application = () => {
       `Created the ${selectedToastNotificationType} toast notification`,
       {
         shouldAutomaticallyDismiss,
-      }
+      },
     );
   };
 

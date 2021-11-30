@@ -15,7 +15,7 @@ export const ToastNotificationsContext = createContext<
 
 export const toastNotificationsReducer = (
   toastNotifications: ToastNotification[],
-  action: ToastNotificationReducerAction
+  action: ToastNotificationReducerAction,
 ) => {
   switch (action.type) {
     case "create":
@@ -24,12 +24,14 @@ export const toastNotificationsReducer = (
       return toastNotifications.map((toastNotification) =>
         toastNotification.id === action.id
           ? { id: action.id, ...action.updatedToastNotification }
-          : toastNotification
+          : toastNotification,
       );
     case "delete":
       return toastNotifications.filter(
-        (toastNotification) => toastNotification.id !== action.id
+        (toastNotification) => toastNotification.id !== action.id,
       );
+    default:
+      return toastNotifications;
   }
 };
 
@@ -48,7 +50,7 @@ export const ToastNotificationsProvider = ({
 }: ToastNotificationsProviderProps) => {
   const [toastNotifications, dispatchToastNotifications] = useReducer(
     toastNotificationsReducer,
-    initialToastNotifications
+    initialToastNotifications,
   );
 
   const mergedOptions = {
@@ -89,7 +91,7 @@ export const ToastNotificationsProvider = ({
 
       return toastNotificationToCreate;
     },
-    [duration, shouldAutomaticallyDismiss, areNotificationsDismissible]
+    [duration, shouldAutomaticallyDismiss, areNotificationsDismissible],
   );
 
   const updateToastNotification = useCallback(
@@ -110,14 +112,14 @@ export const ToastNotificationsProvider = ({
 
       return toastNotificationToUpdate;
     },
-    []
+    [],
   );
 
   const deleteToastNotification = useCallback(
     ({ id }: { id: ToastNotification["id"] }) => {
       dispatchToastNotifications({ type: "delete", id });
     },
-    []
+    [],
   );
 
   const value = useMemo(
@@ -126,7 +128,7 @@ export const ToastNotificationsProvider = ({
       deleteToastNotification,
       updateToastNotification,
     }),
-    [createToastNotification, updateToastNotification, deleteToastNotification]
+    [createToastNotification, updateToastNotification, deleteToastNotification],
   );
 
   return (

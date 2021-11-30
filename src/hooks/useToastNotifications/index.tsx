@@ -7,7 +7,7 @@ export const useToastNotifications = () => {
 
   if (!context) {
     throw new Error(
-      "`useToastNotifications` must be used within a `ToastNotificationsProvider`."
+      "`useToastNotifications` must be used within a `ToastNotificationsProvider`.",
     );
   }
 
@@ -15,7 +15,7 @@ export const useToastNotifications = () => {
 
   const success = (
     text: ToastNotification["text"],
-    options: ToastNotification["options"]
+    options: ToastNotification["options"],
   ) => {
     const toastNotification = createToastNotification({
       text,
@@ -28,7 +28,7 @@ export const useToastNotifications = () => {
 
   const information = (
     text: ToastNotification["text"],
-    options: ToastNotification["options"]
+    options: ToastNotification["options"],
   ) => {
     const toastNotification = createToastNotification({
       text,
@@ -41,7 +41,7 @@ export const useToastNotifications = () => {
 
   const warning = (
     text: ToastNotification["text"],
-    options: ToastNotification["options"]
+    options: ToastNotification["options"],
   ) => {
     const toastNotification = createToastNotification({
       text,
@@ -54,7 +54,7 @@ export const useToastNotifications = () => {
 
   const error = (
     text: ToastNotification["text"],
-    options: ToastNotification["options"]
+    options: ToastNotification["options"],
   ) => {
     const toastNotification = createToastNotification({
       text,

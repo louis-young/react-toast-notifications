@@ -21,7 +21,7 @@ describe("CreateToastNotificationForm", () => {
           defaultOnShouldAutomaticallyDismissChange
         }
         onSubmit={defaultOnSubmit}
-      />
+      />,
     );
 
     const form = screen.getByRole("form", {
@@ -45,13 +45,13 @@ describe("CreateToastNotificationForm", () => {
             defaultOnShouldAutomaticallyDismissChange
           }
           onSubmit={defaultOnSubmit}
-        />
+        />,
       );
 
       const option = screen.getByLabelText(label);
 
       expect(option).toBeEnabled();
-    }
+    },
   );
 
   it("renders the enabled `Automatically dismiss` checkbox", () => {
@@ -66,11 +66,11 @@ describe("CreateToastNotificationForm", () => {
           defaultOnShouldAutomaticallyDismissChange
         }
         onSubmit={defaultOnSubmit}
-      />
+      />,
     );
 
     const automaticallyDismissOption = screen.getByLabelText(
-      "Automatically dismiss"
+      "Automatically dismiss",
     );
 
     expect(automaticallyDismissOption).toBeEnabled();
@@ -88,7 +88,7 @@ describe("CreateToastNotificationForm", () => {
           defaultOnShouldAutomaticallyDismissChange
         }
         onSubmit={defaultOnSubmit}
-      />
+      />,
     );
 
     const createToastNotificationButton = screen.getByRole("button", {
@@ -108,7 +108,7 @@ describe("CreateToastNotificationForm", () => {
     (
       newSelectedToastNotificationType,
       label,
-      selectedToastNotificationType
+      selectedToastNotificationType,
     ) => {
       const onSelectedToastNotificationTypeChange = jest.fn();
 
@@ -123,7 +123,7 @@ describe("CreateToastNotificationForm", () => {
             defaultOnShouldAutomaticallyDismissChange
           }
           onSubmit={defaultOnSubmit}
-        />
+        />,
       );
 
       const option = screen.getByLabelText(label);
@@ -131,9 +131,9 @@ describe("CreateToastNotificationForm", () => {
       userEvent.click(option);
 
       expect(onSelectedToastNotificationTypeChange).toHaveBeenCalledWith(
-        newSelectedToastNotificationType
+        newSelectedToastNotificationType,
       );
-    }
+    },
   );
 
   it.each([
@@ -155,19 +155,19 @@ describe("CreateToastNotificationForm", () => {
             onShouldAutomaticallyDismissChange
           }
           onSubmit={defaultOnSubmit}
-        />
+        />,
       );
 
       const automaticallyDismissOption = screen.getByLabelText(
-        "Automatically dismiss"
+        "Automatically dismiss",
       );
 
       userEvent.click(automaticallyDismissOption);
 
       expect(onShouldAutomaticallyDismissChange).toHaveBeenCalledWith(
-        newShouldAutomaticallyDismiss
+        newShouldAutomaticallyDismiss,
       );
-    }
+    },
   );
 
   it.each([
@@ -208,7 +208,7 @@ describe("CreateToastNotificationForm", () => {
     (
       expectedArgument,
       selectedToastNotificationType,
-      shouldAutomaticallyDismiss
+      shouldAutomaticallyDismiss,
     ) => {
       const onSubmit = jest.fn();
 
@@ -223,7 +223,7 @@ describe("CreateToastNotificationForm", () => {
             defaultOnShouldAutomaticallyDismissChange
           }
           onSubmit={onSubmit}
-        />
+        />,
       );
 
       const createToastNotificationButton = screen.getByRole("button", {
@@ -233,6 +233,6 @@ describe("CreateToastNotificationForm", () => {
       userEvent.click(createToastNotificationButton);
 
       expect(onSubmit).toHaveBeenCalledWith(expectedArgument);
-    }
+    },
   );
 });

@@ -6,7 +6,7 @@ export const useToastNotificationsContext = () => {
 
   if (!context) {
     throw new Error(
-      "`useToastNotificationsContext` must be used within a `ToastNotificationsProvider`."
+      "`useToastNotificationsContext` must be used within a `ToastNotificationsProvider`.",
     );
   }
 

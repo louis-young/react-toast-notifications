@@ -1,5 +1,5 @@
-import { Separator } from "../Separator";
 import type { FormEvent } from "react";
+import { Separator } from "../Separator";
 import type { ToastNotification } from "../../types/toastNotification";
 import type { CreateToastNotificationFormProps } from "./types";
 
@@ -38,7 +38,7 @@ export const CreateToastNotificationForm = ({
               name="toast-notification-type"
               onChange={(event) =>
                 onSelectedToastNotificationTypeChange(
-                  event.target.value as ToastNotification["type"]
+                  event.target.value as ToastNotification["type"],
                 )
               }
               value={value}

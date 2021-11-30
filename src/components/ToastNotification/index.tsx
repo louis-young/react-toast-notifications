@@ -49,6 +49,7 @@ export const ToastNotification = memo(
             <button
               onClick={() => deleteToastNotification({ id })}
               className="text-gray-400 font-bold h-6 w-6 text-sm absolute top-0.5 right-0.5 transition  hover:text-gray-600"
+              type="submit"
             >
               ✕
             </button>
@@ -60,5 +61,5 @@ export const ToastNotification = memo(
         )}
       </li>
     );
-  }
+  },
 );
