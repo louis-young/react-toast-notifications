@@ -33,6 +33,7 @@
   ],
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
+    "no-use-before-define": "off",
     "arrow-body-style": "off",
     "no-nested-ternary": "off",
     "consistent-return": "off",
@@ -50,5 +51,7 @@
     "react/react-in-jsx-scope": "off",
     "react/function-component-definition": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   }
 }
