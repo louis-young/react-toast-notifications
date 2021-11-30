@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.1",
-    "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
     "@types/jest": "^26.0.22",
@@ -45,6 +44,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.1.0",
+    "@testing-library/jest-dom": "^5.15.1",
     "@types/styled-components": "^5.1.15",
     "@types/uuid": "^8.3.1",
     "autoprefixer": "^9.8.6",
