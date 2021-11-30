@@ -13,7 +13,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "lint": "eslint ./src/**/*.{ts,tsx}",
+    "lint": "eslint \"./src/**/*.{ts,tsx}\"",
     "lint:fix": "npm run lint -- --fix",
     "eject": "react-scripts eject"
   },

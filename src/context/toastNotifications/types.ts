@@ -1,10 +1,10 @@
-import { ToastNotificationsListPosition } from "../../components/ToastNotificationsList/types";
 import type { ReactNode } from "react";
+import { ToastNotificationsListPosition } from "../../components/ToastNotificationsList/types";
 import type { ToastNotification } from "../../types/toastNotification";
 
 export type ToastNotificationsContextValue = {
   createToastNotification: (
-    toastNotification: Omit<ToastNotification, "id">
+    toastNotification: Omit<ToastNotification, "id">,
   ) => ToastNotification;
   updateToastNotification: ({
     id,
