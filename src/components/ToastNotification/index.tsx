@@ -29,36 +29,38 @@ export const ToastNotification = memo(
     }, [shouldAutomaticallyDismiss, deleteToastNotification, id, duration]);
 
     return (
-      <li className="relative">
-        <div className="rounded-sm py-4 px-6 bg-white text-center flex items-center gap-6">
-          {type === "success"
-            ? success
-            : type === "information"
-            ? information
-            : type === "warning"
-            ? warning
-            : type === "error"
-            ? error
-            : information}
+      <li>
+        <dialog className="static w-full p-0 rounded-sm" open>
+          <div className="relative text-center rounded-sm flex items-center gap-6 py-4 px-6 bg-white">
+            {type === "success"
+              ? success
+              : type === "information"
+              ? information
+              : type === "warning"
+              ? warning
+              : type === "error"
+              ? error
+              : information}
 
-          <p className="text-gray-900 text-md text-left font-medium flex-1">
-            {text}
-          </p>
+            <p className="text-gray-900 text-md text-left font-medium flex-1">
+              {text}
+            </p>
 
-          {isDismissible && (
-            <button
-              onClick={() => deleteToastNotification({ id })}
-              className="text-gray-400 font-bold h-6 w-6 text-sm absolute top-0.5 right-0.5 transition  hover:text-gray-600"
-              type="submit"
-            >
-              ✕
-            </button>
+            {isDismissible && (
+              <button
+                onClick={() => deleteToastNotification({ id })}
+                className="text-gray-400 font-bold h-6 w-6 text-sm absolute top-0.5 right-0.5 transition  hover:text-gray-600"
+                type="submit"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+
+          {shouldAutomaticallyDismiss && (
+            <ToastNotificationDuration duration={duration} />
           )}
-        </div>
-
-        {shouldAutomaticallyDismiss && (
-          <ToastNotificationDuration duration={duration} />
-        )}
+        </dialog>
       </li>
     );
   },
