@@ -1,10 +1,6 @@
-name: Continuous Integration
+name: CI
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: [push]
 
 jobs:
   build:
@@ -14,14 +10,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run linter
-        run: npm run lint
-
-      - name: Run type checks
-        run: npx tsc
-
-      - name: Run tests
-        run: npm test
+      - name: CI
+        run: |
+          npm ci # Clean install dependencies.
+          npx tsc # Run TypeScript compiler.
+          npm run format # Run formatter.
+          npm run lint # Run linter.
+          npm run test # Run tests.
+          npm run build # Run build.
