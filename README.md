@@ -1,3 +1,5 @@
+⚠️ Please note that this is an old project and does not reflect the quality of my current work.
+
 # React Toast Notifications
 
 A clean, lightweight toast notification library for React.
